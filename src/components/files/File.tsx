@@ -1,10 +1,11 @@
+import ToasterProvider from "../../providers/ToasterProvider";
 import UploadFile from "./UploadFile";
 
 const FileManagement = () => {
   return (
     <div>
-      <UploadFile
-      />
+      <ToasterProvider />
+      <UploadFile/>
     </div>
    );
 }

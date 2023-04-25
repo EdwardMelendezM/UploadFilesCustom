@@ -1,6 +1,6 @@
 import { useState,useRef } from "react";
 import useFile from "../../hooks/useFile";
-
+import {toast} from "react-hot-toast"
 
 
 const UploadFile:React.FC= () => {
@@ -21,7 +21,8 @@ const UploadFile:React.FC= () => {
 
       const allowedExtensions = ["jpg", "jpeg"];
       if (!allowedExtensions.includes(extension.toLowerCase())) {
-          alert("Solo se permiten archivos con extensión .jpg o .jpeg");
+          toast.error("File extension " + extension + " is not allowed")
+
           if(ref.current)
             ref.current.value=""
           return;
@@ -30,7 +31,7 @@ const UploadFile:React.FC= () => {
       //Verificar el tamaño del archivo
       const allowedSize = 1 * 1024 * 1024; // 5MB
       if (file.size > allowedSize) {
-          alert("El archivo es demasiado grande. El tamaño máximo es de 5 MB");
+          toast.error("File size must be greater than")
           return;
         } 
 
@@ -62,8 +63,11 @@ const UploadFile:React.FC= () => {
         disabled={loading}
         >
           Actualizar
-        </button>
-      {imagenUrl &&  <img src={imagenUrl} alt="imagen" />}
+      </button>
+      <div>
+        {imagenUrl &&  <img src={imagenUrl} alt="imagen" height={400}/>}
+      </div>  
+      
     </form>
    );
 }

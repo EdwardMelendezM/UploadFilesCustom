@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {toast} from "react-hot-toast"
 
 const useFile = () => {
   const [state, setState] = useState(true);
@@ -12,8 +13,14 @@ const useFile = () => {
       method:'POST',
       body:formData
     })
-    .then(()=>{setState(false)})
-    .catch(error=>setError(error))
+    .then(()=>{
+      setState(false)
+      toast.success("Success")
+    })
+    .catch(error=>{
+      setError(error)
+      toast.error("Error")
+    })
     .finally(()=>setLoading(false))
   }
 
